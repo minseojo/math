@@ -31,19 +31,19 @@ public class Matrix {
     }
 
     static void showMatrix(int[][] matrix) {
-        int rowLength = matrix.length;
-        int columnLength = matrix[0].length;
-
-        for (int i = 0; i < rowLength; i++) {
-            System.out.print("[");
-            for (int j = 0; j < columnLength; j++) {
-                System.out.print(j != columnLength - 1 ? matrix[i][j] + ", " : matrix[i][j]);
-            }
-            System.out.println("]");
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
         }
-
         System.out.println();
     }
+
+    static void showMatrix(double[][] matrix) {
+        for (double[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+        System.out.println();
+    }
+
 
     static int calculateMatrixDeterminant(int[][] matrix) {
         if (!isValidMatrix(matrix)) {
