@@ -53,7 +53,7 @@ public class Determinant {
     }
 
     static boolean isValidMatrix(int[][] matrix) {
-        return matrix != null && matrix.length > 0 && matrix[0].length > 0;
+        return matrix != null && matrix.length > 0 && matrix[0].length > 0 && matrix.length == matrix[0].length;
     }
 
     static void showMatrix(int[][] matrix) {
