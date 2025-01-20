@@ -153,7 +153,7 @@ public class Matrix {
 
     static double[][] makeInverseMatrix(int[][] matrix) {
         if (!isValidMatrix(matrix)) {
-            throw new IllegalArgumentException("Invalid Matrix");
+            throw new IllegalArgumentException("Invalid Matrix (소수점 둘째 자리 반올림)");
         }
 
         int determinant = calculateMatrixDeterminant(matrix);
