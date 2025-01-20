@@ -26,25 +26,25 @@ public class Determinant {
         int columnLength = matrix[0].length;
 
         // Additive process (Right)
-        for (int i = 0; i < columnLength; i++) {
-            int sum = matrix[0][i];
-            int j = 1, k = (i + 1) % columnLength;
-            while (j < rowLength) {
-                sum *= matrix[j][k];
-                j++;
-                k = (k + 1) % columnLength;
+        for (int base = 0; base < columnLength; base++) {
+            int sum = matrix[0][base];
+            int row = 1, col = (base + 1) % columnLength;
+            while (row < rowLength) {
+                sum *= matrix[row][col];
+                row++;
+                col = (col + 1) % columnLength;
             }
             result += sum;
         }
 
         // Subtractive process (Left)
-        for (int i = 0; i < columnLength; i++) {
-            int sum = matrix[0][i];
-            int j = 1, k = (i - 1 + columnLength) % columnLength;
-            while (j < rowLength) {
-                sum *= matrix[j][k];
-                j++;
-                k = (k - 1 + columnLength) % columnLength;
+        for (int base = 0; base < columnLength; base++) {
+            int sum = matrix[0][base];
+            int row = 1, col = (base - 1 + columnLength) % columnLength;
+            while (row < rowLength) {
+                sum *= matrix[row][col];
+                row++;
+                col = (col - 1 + columnLength) % columnLength;
             }
             result -= sum;
         }
