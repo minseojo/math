@@ -12,7 +12,7 @@ public class Determinant {
             showMatrix(matrix);
             System.out.println("Determinant = " + det);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
