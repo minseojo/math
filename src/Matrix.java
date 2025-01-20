@@ -21,6 +21,9 @@ public class Matrix {
 
             System.out.println("--- Adjoint Matrix ---");
             showMatrix(makeAdjointMatrix(matrix));
+
+            System.out.println("--- Inverse Matrix ---");
+            showMatrix(makeInverseMatrix(matrix));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -147,4 +150,30 @@ public class Matrix {
         return result;
     }
 
+
+    static double[][] makeInverseMatrix(int[][] matrix) {
+        if (!isValidMatrix(matrix)) {
+            throw new IllegalArgumentException("Invalid Matrix");
+        }
+
+        int determinant = calculateMatrixDeterminant(matrix);
+        if (determinant == 0) {
+            throw new IllegalArgumentException("Determinant is zero");
+        }
+
+        int[][] cofactorMatrix = makeCofactorMatrix(matrix);
+        int[][] adjointMatrix = transposeMatrix(cofactorMatrix);
+        int rowLength = matrix.length;
+        int columnLength = matrix[0].length;
+        double[][] result = new double[rowLength][columnLength];
+
+        for (int row = 0; row < rowLength; row++) {
+            for (int col = 0; col < columnLength; col++) {
+
+                result[row][col] = (double) Math.round((double) adjointMatrix[row][col] / determinant * 100) / 100;
+            }
+        }
+
+        return result;
+    }
 }
