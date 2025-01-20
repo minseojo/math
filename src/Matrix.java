@@ -14,13 +14,35 @@ public class Matrix {
             showMatrix(matrix);
 
             int det = calculateMatrixDeterminant(matrix);
-            System.out.println("Determinant = " + det + "\n");
+            System.out.println("determinant = " + det + "\n");
 
             System.out.println("--- Cofactor Matrix ---");
             showMatrix(makeCofactorMatrix(matrix));
+
+            System.out.println("--- Adjoint Matrix ---");
+            showMatrix(makeAdjointMatrix(matrix));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    static boolean isValidMatrix(int[][] matrix) {
+        return matrix != null && matrix.length > 0 && matrix[0].length > 0 && matrix.length == matrix[0].length;
+    }
+
+    static void showMatrix(int[][] matrix) {
+        int rowLength = matrix.length;
+        int columnLength = matrix[0].length;
+
+        for (int i = 0; i < rowLength; i++) {
+            System.out.print("[");
+            for (int j = 0; j < columnLength; j++) {
+                System.out.print(j != columnLength - 1 ? matrix[i][j] + ", " : matrix[i][j]);
+            }
+            System.out.println("]");
+        }
+
+        System.out.println();
     }
 
     static int calculateMatrixDeterminant(int[][] matrix) {
@@ -56,23 +78,6 @@ public class Matrix {
         }
 
         return result;
-    }
-
-    static boolean isValidMatrix(int[][] matrix) {
-        return matrix != null && matrix.length > 0 && matrix[0].length > 0 && matrix.length == matrix[0].length;
-    }
-
-    static void showMatrix(int[][] matrix) {
-        int rowLength = matrix.length;
-        int columnLength = matrix[0].length;
-
-        for (int i = 0; i < rowLength; i++) {
-            System.out.print("[");
-            for (int j = 0; j < columnLength; j++) {
-                System.out.print(j != columnLength - 1 ? matrix[i][j] + ", " : matrix[i][j]);
-            }
-            System.out.println("]");
-        }
     }
 
     static int[][] makeCofactorMatrix(int[][] matrix) {
@@ -114,4 +119,32 @@ public class Matrix {
 
         return result;
     }
+
+    static int[][] makeAdjointMatrix(int[][] matrix) {
+        if (!isValidMatrix(matrix)) {
+            throw new IllegalArgumentException("Invalid Matrix");
+        }
+
+        int[][] cofactorMatrix = makeCofactorMatrix(matrix);
+        return transposeMatrix(cofactorMatrix);
+    }
+
+    static int[][] transposeMatrix(int[][] matrix) {
+        if (!isValidMatrix(matrix)) {
+            throw new IllegalArgumentException("Invalid Matrix");
+        }
+
+        int rowLength = matrix.length;
+        int columnLength = matrix[0].length;
+        int[][] result = new int[rowLength][columnLength];
+
+        for (int row = 0; row < rowLength; row++) {
+            for (int col = 0; col < columnLength; col++) {
+                result[row][col] = matrix[col][row];
+            }
+        }
+
+        return result;
+    }
+
 }
