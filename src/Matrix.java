@@ -22,7 +22,7 @@ public class Matrix {
             System.out.println("--- Adjoint Matrix ---");
             showMatrix(makeAdjointMatrix(matrix));
 
-            System.out.println("--- Inverse Matrix ---");
+            System.out.println("--- Inverse Matrix (소수점 둘째 자리 반올림) ---");
             showMatrix(makeInverseMatrix(matrix));
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,7 +151,7 @@ public class Matrix {
 
     static double[][] makeInverseMatrix(int[][] matrix) {
         if (!isValidMatrix(matrix)) {
-            throw new IllegalArgumentException("Invalid Matrix (소수점 둘째 자리 반올림)");
+            throw new IllegalArgumentException("Invalid Matrix");
         }
 
         int determinant = calculateMatrixDeterminant(matrix);
