@@ -47,6 +47,23 @@ public class Matrix {
         System.out.println();
     }
 
+    static int[][] transposeMatrix(int[][] matrix) {
+        if (!isValidMatrix(matrix)) {
+            throw new IllegalArgumentException("Invalid Matrix");
+        }
+
+        int rowLength = matrix.length;
+        int columnLength = matrix[0].length;
+        int[][] result = new int[rowLength][columnLength];
+
+        for (int row = 0; row < rowLength; row++) {
+            for (int col = 0; col < columnLength; col++) {
+                result[row][col] = matrix[col][row];
+            }
+        }
+
+        return result;
+    }
 
     static int calculateMatrixDeterminant(int[][] matrix) {
         if (!isValidMatrix(matrix)) {
@@ -131,25 +148,6 @@ public class Matrix {
         int[][] cofactorMatrix = makeCofactorMatrix(matrix);
         return transposeMatrix(cofactorMatrix);
     }
-
-    static int[][] transposeMatrix(int[][] matrix) {
-        if (!isValidMatrix(matrix)) {
-            throw new IllegalArgumentException("Invalid Matrix");
-        }
-
-        int rowLength = matrix.length;
-        int columnLength = matrix[0].length;
-        int[][] result = new int[rowLength][columnLength];
-
-        for (int row = 0; row < rowLength; row++) {
-            for (int col = 0; col < columnLength; col++) {
-                result[row][col] = matrix[col][row];
-            }
-        }
-
-        return result;
-    }
-
 
     static double[][] makeInverseMatrix(int[][] matrix) {
         if (!isValidMatrix(matrix)) {
